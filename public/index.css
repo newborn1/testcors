@@ -1,0 +1,11 @@
+.clock {
+  background: rgb(45, 31, 173);
+  color: pink;
+  width: 200px;
+  height: 200px;
+  line-height: 650%;
+  font-size: 30px;
+  text-align: center;
+  margin: auto;
+  display: block;
+}
