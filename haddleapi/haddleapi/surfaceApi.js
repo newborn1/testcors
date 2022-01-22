@@ -1,7 +1,8 @@
 const path = require("path");
 const fs = require("fs");
 
-module.htmlApi = (req, res) => {
+module.exports.htmlApi = (req, res) => {
+  //暴露接口不要写错
   const url = req.url;
   let fpath = "";
   const rootpaht = process.cwd(); //获得根目录

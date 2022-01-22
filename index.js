@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const router = require("./router");
+const router = require("./router/index");
 
 const app = express();
 
@@ -10,6 +10,6 @@ app.use("/public", express.static("public")); //建立public资源供html等申�
 
 app.use(router);
 
-app.listen(80, () => {
-  console.log("running in the http://127.0.0.1:80");
+app.listen(12345, () => {
+  console.log("running in the http://127.0.0.1:12345");
 });
