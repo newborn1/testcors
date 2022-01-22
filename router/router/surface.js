@@ -29,30 +29,30 @@ router.get(
     next(); //next()要放在最后面,否者会停住动不了
   },
   (req, res) => {
-    if (req.session.islogin) {
+    if (!req.session.islogin) {
       /*第一次请求时,保存一条用户信息*/
-      req.session = {
-        user: {
-          name: "Zheng-wx",
-          age: "20",
-          address: "st",
-        },
-        islogin: true,
+      req.session.user = {
+        name: "Zheng-wx",
+        age: "20",
+        address: "st",
       };
-      res.render("index", {
-        title: "the test for node.js session",
-        name: "这是私钥", //不能省
-      });
-      return res.send("你还没登录！");
+      req.session.islogin = true;
+      req.session.visitTime = 0; //访问次数,Edge的有点奇怪，访问一次请求了三次？
+      req.session.start = Date.now();
+      return res.send("你还没登录,已经获得session,再次刷新即可！");
     }
 
     const url = req.url;
+    req.session.visitTime++;
     // if (err) {
     //   return req.send(`<h1>${url}错误<h1>`);
     // }
     FunctionApi.htmlApi(req, res);
     const session = req.session;
-    req.session.destroy();
+    if (req.session.visitTime === 3) {
+      console.log(Date.now(), Date.now() - seq.session.start);
+      req.session.destroy(); //最后要销毁
+    }
     console.log(session); //这里不能再发消息，一次请求只能一次响应
   }
 );

@@ -11,6 +11,11 @@ module.exports.htmlApi = (req, res) => {
     if (err) {
       return res.send("<h1>404 Not Found<h1>");
     }
+    // dataStr += `<script type="text/javascript">window.onload = () => {
+    //   alert("session的有效期是${Date.now() - req.session.start}s,且最多访问${
+    //   3 - req.session.visitTime
+    // }次"</script>);
+    // };`.toString("utf-8");
     return res.send(dataStr);
   });
 };

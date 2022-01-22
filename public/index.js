@@ -7,3 +7,7 @@ window.setInterval(() => {
     return nowtime;
   })();
 }, 1000);
+
+window.onload = () => {
+  alert("session总的有效期是10s,且最多访问3次");
+};
